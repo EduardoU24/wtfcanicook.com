@@ -53,8 +53,8 @@ export default async function handler(req: NextRequest) {
       </div>
     ),
     {
-      width: 1200,
-      height: 630,
+      width: 1200 * .8,
+      height: 630 * .8,
       fonts: [
         {
           name: "SF Pro",

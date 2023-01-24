@@ -5,7 +5,7 @@ const DOMAIN = "https://wtfcanicook.com";
 export default function Meta({
   title = "WTFCanICook - AI Generated recipes",
   description = "Enter your ingredients and let the internet gods decide your next meal.",
-  image = `${DOMAIN}/api/og`,
+  image = `${DOMAIN}/og.png`,
 }: {
   title?: string;
   description?: string;
@@ -26,8 +26,8 @@ export default function Meta({
       <meta property="og:image" content={image} />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@vercel" />
-      <meta name="twitter:creator" content="@steventey" />
+      <meta name="twitter:site" content="@WTFCanICook" />
+      <meta name="twitter:creator" content="@EduardoU24" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

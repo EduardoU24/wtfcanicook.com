@@ -158,7 +158,7 @@ export default function Card({ title, description, demo, large }: { title: strin
       </form>
     </div>
     <hr className="h-10 mt-5 mx-10"  />
-    {!parsedGPT && !searching && !findings ? <ComponentGrid /> : null}
+    {!!parsedGPT || searching || found ? <ComponentGrid /> : null}
 
     {parsedGPT && (parsedGPT as any).recipes.length > 0 && (parsedGPT as any).recipes.map((recipe : any, key : number) => (
       <RecipeCard key={key++} recipeData={recipe} />

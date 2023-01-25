@@ -8,6 +8,7 @@ import useScroll from "@/lib/hooks/use-scroll";
 import Meta from "./meta";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Layout({
   meta,
@@ -106,6 +107,7 @@ export default function Layout({
           </a>
         </p>
       </div>
+      <Analytics />
     </>
   );
 }

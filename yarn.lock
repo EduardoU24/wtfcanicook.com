@@ -780,10 +780,10 @@
     "@typescript-eslint/types" "5.48.1"
     "eslint-visitor-keys" "^3.3.0"
 
-"@vercel/analytics@^0.1.6":
-  "integrity" "sha512-zNd5pj3iDvq8IMBQHa1YRcIteiw6ZiPB8AsONHd8ieFXlNpLqhXfIYnf4WvTfZ7S1NSJ++mIM14aJnNac/VMXQ=="
-  "resolved" "https://registry.npmjs.org/@vercel/analytics/-/analytics-0.1.6.tgz"
-  "version" "0.1.6"
+"@vercel/analytics@^0.1.8":
+  "integrity" "sha512-PQrOI8BJ9qUiVJuQfnKiJd15eDjDJH9TBKsNeMrtelT4NAk7d9mBVz1CoZkvoFnHQ0OW7Xnqmr1F2nScfAnznQ=="
+  "resolved" "https://registry.npmjs.org/@vercel/analytics/-/analytics-0.1.8.tgz"
+  "version" "0.1.8"
 
 "@vercel/og@^0.0.26":
   "integrity" "sha512-YCVcVa0UMI4gfmldpBx9l1H28m6rVuwGakNVhbTtjShldxMYJC7eggtTrWxPUydYZomaVElzFl2uumyUwv0MnQ=="

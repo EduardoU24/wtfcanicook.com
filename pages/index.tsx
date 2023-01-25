@@ -48,7 +48,7 @@ export default function Home() {
         >
           <motion.a
             variants={FADE_DOWN_ANIMATION_VARIANTS}
-            href="http://twitter.com/share?text=This site just made me a recipe with just a few ingredients&url=https://wtfcanicook.com/&hashtags=OpenIA,FoodRecipes,Tasty"
+            href="http://twitter.com/share?text=This site just made me a recipe with just a few ingredients&url=https://wtfcanicook.com/&hashtags=OpenIA,FoodRecipes,Foodies,RecipeOfTheDay"
             target="_blank"
             rel="noreferrer"
             className="mx-auto mb-5 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"

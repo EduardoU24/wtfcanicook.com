@@ -60,7 +60,7 @@ export async function loadYoutubeFromGPT(parsedGPT: any) {
         'Authorization': process.env.YOUTUBE_API_KEY as string
       }
     };
-    const youtubeRequest = await fetch(`http://localhost:3000/api/youtube?q=${parsedGPT.recipes[i].name}`, requestOptions).then(data => data.json());
+    const youtubeRequest = await fetch(`/api/youtube?q=${parsedGPT.recipes[i].name}`, requestOptions).then(data => data.json());
     parsedGPT.recipes[i].videos = youtubeRequest;
   }
   return parsedGPT;
@@ -105,7 +105,6 @@ export default function Card({ title, description, demo, large }: { title: strin
         setError("Something went wrong, please try again. \n\n" + gpt.error.message);
         return;
       }
-      console.log(gpt);
       const json = `${gpt.choices[0].text.trim().replace('\n', '')}`;
       await setFindings(json);
       const parsedJson = await JSON.parse(json);
@@ -119,7 +118,6 @@ export default function Card({ title, description, demo, large }: { title: strin
       setError("Something went wrong, please try again...");
       return;
     }
-
   }
 
   if(!large) return ( <SmallCard key={title} title={title} description={description} demo={demo} /> );

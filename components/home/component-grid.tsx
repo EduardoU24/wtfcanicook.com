@@ -1,10 +1,6 @@
 import Tooltip from "@/components/shared/tooltip";
-import { signOut, useSession } from "next-auth/react";
 
 export default function ComponentGrid() {
-  const { data: session } = useSession();
-  const { email, image } = session?.user || {};
-  if (!email) return null;
 
   const emojis = [{emoji: '🍇', value: 'Grapes'},
   {emoji: '🍈', value: 'Melon'},

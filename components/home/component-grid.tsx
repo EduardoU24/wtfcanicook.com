@@ -61,11 +61,11 @@ export default function ComponentGrid() {
   };
 
   return (
-    <div className="grid gap-2 grid-cols-11 shadow-sm">
-      {emojis.map(({ emoji, value }) => (
+    <div className="grid gap-2 grid-cols-5 shadow-sm sm:grid-cols-11">
+      {emojis.map(({ emoji, value }, key) => (
         <>
         <Tooltip content={value}>
-          <div onClick={() => onEmojiClick(value)} className="flex cursor-default items-center justify-center rounded-md border border-gray-300 px-3 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100">
+          <div key={key++} onClick={() => onEmojiClick(value)} className="flex cursor-default items-center justify-center rounded-md md:border md:border-gray-300 px-3 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100">
             <p className="text-gray-600">{emoji}</p>
           </div>
         </Tooltip>

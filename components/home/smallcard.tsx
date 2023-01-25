@@ -13,7 +13,7 @@ export default function SmallCard({
   }) {
 
   return (
-    <div className={`relative col-span-1 h-96 overflow-hidden rounded-md border border-gray-200 bg-gray-50 shadow-sm`}>
+    <div className={`relative col-span-2 sm:col-span-1 h-96 overflow-hidden rounded-md border border-gray-200 bg-gray-50 shadow-sm`}>
       <div className="flex h-4/6 items-center justify-center">{demo}</div>
       <div className=" h-2/6 mx-auto max-w-md text-center items-center justify-center">
         <h2 className="bg-gradient-to-br from-black to-stone-500 bg-clip-text font-display text-xl font-bold text-transparent md:text-3xl md:font-normal">

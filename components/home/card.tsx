@@ -142,7 +142,7 @@ export default function Card({ title, description, demo, large }: { title: strin
       </div>
     : null}
 
-    <div className=" mx-auto text-center items-center pt-2 pb-5">
+    <div className="mx-auto text-center items-center pt-2 pb-5">
       <form onSubmit={onSearch}>
         <fieldset disabled={!!parsedGPT || searching || found}>
         <LabelSearch />
@@ -158,7 +158,7 @@ export default function Card({ title, description, demo, large }: { title: strin
       </form>
     </div>
     <hr className="h-10 mt-5 mx-10"  />
-    {!!parsedGPT || searching || found ? <ComponentGrid /> : null}
+    {!!parsedGPT || searching || found ? null : <ComponentGrid />}
 
     {parsedGPT && (parsedGPT as any).recipes.length > 0 && (parsedGPT as any).recipes.map((recipe : any, key : number) => (
       <RecipeCard key={key++} recipeData={recipe} />

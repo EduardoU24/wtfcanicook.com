@@ -4,9 +4,8 @@ import { styled } from '@stitches/react';
 import { blackA } from '@radix-ui/colors';
 
 const LabelSearch = () => (
-  <Flex css={{ padding: '0 20px', flexWrap: 'wrap', gap: 15, alignItems: 'left' }}>
-    <LabelRoot htmlFor="search">Ingredients</LabelRoot>
-    <Input type="text" id="search" placeholder='lettuce, tomato, beef, garlic' defaultValue="" />
+  <Flex className='w-5/6 content-center justify-center my-2 md:w-3/6' css={{ padding: '0 20px', flexWrap: 'wrap', gap: 15, alignItems: 'left' }}>
+    <Input className='w-1/6 content-center justify-center my-2 md:w-1/6' type="text" id="search" placeholder='lettuce, tomato, beef, garlic' defaultValue="" />
   </Flex>
 );
 
@@ -19,7 +18,7 @@ const LabelRoot = styled(Label.Root, {
 
 const Input = styled('input', {
   all: 'unset',
-  width: 300,
+  width: '100%',
   display: 'inline-flex',
   alignItems: 'left',
   justifyContent: 'left',

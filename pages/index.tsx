@@ -78,7 +78,7 @@ export default function Home() {
 
 const features = [
   {
-    title: "Beautiful, reusable components",
+    title: "Write your ingredients",
     large: true,
   },
   {
@@ -91,7 +91,7 @@ const features = [
     title: "It's Free*",
     description:
       (<>
-      This web uses the OpenAI API, if you want to use it more than once a day please add a key of your own.
+      This web uses the free tier OpenAI API, so it will reach its limit. Add a key of your own for more.
       <br/>
       You can obtain a key
         <a

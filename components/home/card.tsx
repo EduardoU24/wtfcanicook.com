@@ -90,16 +90,22 @@ export default function Card({ title, description, demo, large }: { title: strin
   
   const onSearch = async (event: any) => {
     event.preventDefault();
-
-    setSearching(true);
   
-    if(typeof event.target?.search?.value !== 'string') {
+    if(typeof event.target?.search?.value !== 'string' || event.target.search.value.length < 3) {
       setSearching(false);
       return;
     }
 
+    setSearching(true);
+
     try {
       const gpt = await getGPT(event.target.search.value);
+      if(gpt.error) {
+        setSearching(false);
+        setError("Something went wrong, please try again. \n\n" + gpt.error.message);
+        return;
+      }
+      console.log(gpt);
       const json = `${gpt.choices[0].text.trim().replace('\n', '')}`;
       await setFindings(json);
       const parsedJson = await JSON.parse(json);
@@ -110,7 +116,7 @@ export default function Card({ title, description, demo, large }: { title: strin
     } catch(e) {
       console.log(e);
       setSearching(false);
-      setError("Something went wrong, please try again.");
+      setError("Something went wrong, please try again...");
       return;
     }
 
@@ -121,29 +127,29 @@ export default function Card({ title, description, demo, large }: { title: strin
   return (
   <div className={`relative col-span-2 row-span-3 h-full overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm p-3`}>
     <div className="mx-auto max-w-md text-center items-center justify-center pt-2 pb-5">
-      <h2 className="bg-gradient-to-br from-black to-stone-500 bg-clip-text font-display text-xl font-bold text-transparent md:text-3xl md:font-normal">
-        <Balancer>{title}</Balancer>
+      <h2 className="bg-gradient-to-br from-black to-stone-500 bg-clip-text font-display text-xl font-bold text-transparent md:text-2xl md:font-normal">
+        <Balancer>{!!parsedGPT || found ? <>Bon appetit</> : <>Try with what you have in the fridge</>}</Balancer>
       </h2>
     </div>
 
     {errorMessage ? 
       <div className="p-10">
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          <strong className="font-bold">Whoops</strong>
-          <span className="block sm:inline">{errorMessage}</span>
+          <strong className="font-bold">Whoops, </strong>
+          <span className="block sm:inline"> {errorMessage}</span>
           <span className="absolute top-0 bottom-0 right-0 px-4 py-3"onClick={() => { setError("") }}>
             <svg className="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
           </span>
         </div>
       </div>
     : null}
-    
+
     <div className=" mx-auto text-center items-center pt-2 pb-5">
       <form onSubmit={onSearch}>
         <fieldset disabled={!!parsedGPT || searching || found}>
         <LabelSearch />
         <button disabled={!!parsedGPT || searching || found} type="submit" className=" clear-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            {!!parsedGPT || found ? <>bon appetit, try again tomorrow</> : 
+            {!!parsedGPT || found ? <>Try again in a few minutes</> : 
             <>
               {!searching ? <>Make Recipe
               <svg aria-hidden="true" className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>

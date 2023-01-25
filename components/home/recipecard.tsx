@@ -1,5 +1,4 @@
 import Link from "next/link.js";
-import YoutubeEmbed from "./youtubeembed.js";
 
 export default function RecipeCard({recipeData} : any) {
     return (

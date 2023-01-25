@@ -48,7 +48,7 @@ export default function Home() {
         >
           <motion.a
             variants={FADE_DOWN_ANIMATION_VARIANTS}
-            href="https://twitter.com/EduardoU24"
+            href="http://twitter.com/share?text=This site just made me a recipe with just a few ingredients&url=https://wtfcanicook.com/&hashtags=OpenIA,FoodRecipes,Tasty"
             target="_blank"
             rel="noreferrer"
             className="mx-auto mb-5 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
@@ -62,9 +62,9 @@ export default function Home() {
       </motion.div>
       {/* here we are animating with Tailwind instead of Framer Motion because Framer Motion messes up the z-index for child components */}
       <div className="my-10 grid w-full max-w-screen-xl animate-[slide-down-fade_0.5s_ease-in-out] grid-cols-1 gap-3 px-5 md:grid-cols-3 xl:px-0">
-        {features.map(({ title, description, demo, large }) => (
+        {features.map(({ title, description, demo, large }, key) => (
           <Card
-            key={title}
+            key={key++}
             title={title}
             description={description}
             demo={demo}

@@ -32,7 +32,7 @@ export default function RecipeCard({recipeData} : any) {
                 </> : null}
             </div>
             {recipeData.videos && recipeData.videos.length > 0 ? <>
-                <h2 className="bgtextstyle mt-5 mb-5">What does youtube says?</h2>
+                <h2 className="bgtextstyle mt-5 mb-5">What does youtube say?</h2>
                 <div className={`grid grid-cols-2 gap-2`}>
                     {recipeData.videos.map((video: string, key:number) => (
                         <Link key={key++} className={`w-full grid-cols-2`} href={`https://www.youtube.com/watch?v=${video}`} target="_blank">

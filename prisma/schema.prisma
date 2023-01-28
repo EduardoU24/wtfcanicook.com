@@ -55,6 +55,7 @@ model Key {
 
 model Recipe {
   id            String    @id @default(cuid())
+  prompt        String
   ingredients   String[]
   instructions  String[]
   videos        String[]

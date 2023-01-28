@@ -6,6 +6,8 @@ import ComponentGrid from "./component-grid";
 import SmallCard from "./smallcard";
 import { useState } from "react";
 import RecipeCard from "./recipecard";
+import { useSession } from "next-auth/react";
+import { useSignInModal } from "../layout/sign-in-modal";
 
 const format 
        = 'You are a Cook or Chef.'
@@ -31,6 +33,20 @@ const DEFAULT_PARAMS = {
   "presence_penalty": 0
 }
 
+export async function saveRecipe(data: any) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': process.env.NEXTAUTH_SECRET as string
+    },
+    body: JSON.stringify(data)
+  };
+
+  const toReturn = await fetch('/api/recipes', requestOptions).then(data => data.json());
+  return toReturn;
+}
+
 export async function getGPT(ingredients: string) {
   const prompt = format.replace('{INGREDIENTS}', ingredients);
   const params_ = { ...DEFAULT_PARAMS, ...{prompt: prompt} };
@@ -45,10 +61,6 @@ export async function getGPT(ingredients: string) {
 
   const data = await fetch('https://api.openai.com/v1/completions', requestOptions).then(data => data.json());
   return data;
-}
-
-export async function saveGPT(gpt: any) {
-
 }
 
 export async function loadYoutubeFromGPT(parsedGPT: any) {
@@ -87,10 +99,19 @@ export default function Card({ title, description, demo, large }: { title: strin
   const [findings, setFindings] = useState("");
   const [errorMessage, setError] = useState("");
   const [parsedGPT, setParsedGPT] = useState();
+  const { data: session } = useSession();
+  const { email, image } = session?.user || {};
+  const { SignInModal, setShowSignInModal } = useSignInModal();
   
   const onSearch = async (event: any) => {
     event.preventDefault();
-  
+
+    if (!email) {
+        setShowSignInModal(true);
+        console.log('setShowSignInModal');
+        return;
+    }
+
     if(typeof event.target?.search?.value !== 'string' || event.target.search.value.length < 3) {
       setSearching(false);
       return;
@@ -112,6 +133,8 @@ export default function Card({ title, description, demo, large }: { title: strin
       setParsedGPT(withYoutubes);
       setSearching(false);
       setFound(true);
+
+      saveRecipe(withYoutubes);
     } catch(e) {
       console.log(e);
       setSearching(false);
@@ -129,6 +152,8 @@ export default function Card({ title, description, demo, large }: { title: strin
         <Balancer>{!!parsedGPT || found ? <>Bon appetit</> : <>Try with what you have in the fridge</>}</Balancer>
       </h2>
     </div>
+
+    <SignInModal />
 
     {errorMessage ? 
       <div className="p-10">

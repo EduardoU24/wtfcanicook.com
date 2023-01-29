@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["lh3.googleusercontent.com"],
+    domains: ["lh3.googleusercontent.com", "i.kym-cdn.com"],
   },
   env: {
     DATABASE_URL: process.env.DATABASE_URL,

@@ -8,6 +8,7 @@ import { useState } from "react";
 import RecipeCard from "./recipecard";
 import { useSession } from "next-auth/react";
 import { useSignInModal } from "../layout/sign-in-modal";
+import Image from 'next/image';
 
 const format 
        = 'You are a Cook or Chef.'
@@ -183,6 +184,9 @@ export default function Card({ title, description, demo, large }: { title: strin
       </form>
     </div>
     <hr className="h-10 mt-5 mx-10"  />
+
+    {!searching ? null : <div className="w-full p-5"><Image src={"https://i.kym-cdn.com/photos/images/original/002/051/163/11a.gif"} alt="Loading..." height={220} width={220} className="rounded-md aspect-square mx-auto text-center" /></div> }
+
     {!!parsedGPT || searching || found ? null : <ComponentGrid />}
 
     {parsedGPT && (parsedGPT as any).recipes.length > 0 && (parsedGPT as any).recipes.map((recipe : any, key : number) => (
